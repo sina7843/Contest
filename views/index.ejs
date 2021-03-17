@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Programmin Contest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='./stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="right col-6 col-s-10">
+    <img src="./images/BackGround.png" alt="">
+    <div id="countdown" class="countdown">
+      <ul>
+        <li><span id="days"></span>D</li>
+        <li><span id="hours"></span>H</li>
+        <li><span id="minutes"></span>M</li>
+        <li><span id="seconds"></span>S</li>
+      </ul>
+    </div>
+  </div>
+  <form class="form col-3 col-s-9" method='post' action="/">
+    <% if(errmsg.length>0) {%>
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <strong> <%= errmsg %></strong>
+    </div>
+    <% } %>
+    <% if(msg.length>0) {%>
+    <div class="msg">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <strong> <%= msg %></strong>
+    </div>
+    <% } %>
+    <h1>نام نویسی</h1>
+    <input type="text" name="Name" id="name" placeholder="نام و نام خانوادگی" required>
+    <input type="email" name="Email" id="email" placeholder="ایمیل" required>
+    <input type="password" name="Password" id="password" placeholder="گذرواژه" required>
+
+    <input type="submit" value="ثبت نام">
+  </form>
+  <script src="./javascripts/script.js"></script>
+</body>
+
+</html>
