@@ -7,6 +7,11 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const db = require('./config/DataBase');
 
+var auth = require('./controller/Authentication');
+var passport = require('passport');
+const session = require('express-session');
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -20,6 +25,20 @@ mongoose.set('useCreateIndex', true);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+app.use(
+  session({
+    secret: 'SinaKhalegha',
+    resave: true,
+    cookie: {
+      maxage: 1000 * 60 * 60 * 2, //2Hour
+    },
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +46,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', auth.isLogin, usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

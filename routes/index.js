@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var md5 = require('md5');
+var passport = require('passport');
 
 const UserModel = require('../models/user')
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { errmsg: '', msg: '' });
+  res.render('Signup', { errmsg: '', msg: '' });
 });
+
 router.post('/', async (req, res, next) => {
   try {
     let newuser = new UserModel({
@@ -15,11 +17,24 @@ router.post('/', async (req, res, next) => {
       password: md5(req.body.Password)
     });
     await newuser.save()
-    res.render('index', { errmsg: '', msg: 'ثبت نام با موفقیت انجام شد.دیدار ما روز مسابقه' });
+    res.render('Signup', { errmsg: '', msg: 'ثبت نام با موفقیت انجام شد.دیدار ما روز مسابقه' });
   }
   catch (err) {
-    res.render('index', { errmsg: 'با این ایمیل قبلا ثبت نام شده', msg: '' });
+    res.render('Signup', { errmsg: 'با این ایمیل قبلا ثبت نام شده', msg: '' });
   }
 })
+router.get('/login', (req, res, next) => {
+  res.render('login', { errmsg: '' });
+});
+router.get('/logine', (req, res, next) => {
+  res.render('login', { errmsg: 'ایمیل یا گذرواژه درست نیست' });
+});
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/users',
+  failureRedirect: '/logine',
+}), (req, res, next) => {
+  res.json('done');
+});
 
 module.exports = router;
