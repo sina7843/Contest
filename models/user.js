@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Please Provide a Password'],
       select: false
-   }
+   },
+   Score: { type: Number, default: 0 },
 })
 
 const User = mongoose.model('User', userSchema)

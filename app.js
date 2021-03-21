@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var socketapi = require("./socketapi");
 
 const mongoose = require('mongoose');
 const db = require('./config/DataBase');
@@ -10,7 +11,6 @@ const db = require('./config/DataBase');
 var auth = require('./controller/Authentication');
 var passport = require('passport');
 const session = require('express-session');
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -58,10 +58,13 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  console.log(err.message);
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
-module.exports = app;
+
+
+module.exports = { app, socketapi };
+

@@ -8,9 +8,14 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
    <title>Document</title>
+   <script>
+      let thisUser = "<%= thisUser %>";
+      console.log(thisUser);
+   </script>
 </head>
 
 <body>
+
    <div class="right">
       <pre class="editor" id="editor">
 console.log("Hello Wolrd")
@@ -32,37 +37,14 @@ console.log("Hello Wolrd")
    </div>
    <div class="left">
       <div class="question">
+         <%= content %>
       </div>
-      <table class="scoreboard">
+      <table class="scoreboard" id="scoreboard">
          <tr>
             <th colspan="1">Rank</th>
             <th colspan="6">Name</th>
             <th colspan="3">Score</th>
          </tr>
-         <tr>
-            <td colspan="1">1</td>
-            <td colspan="6">name1</td>
-            <td colspan="3">Score</td>
-         </tr>
-         <tr>
-            <td colspan="1">1</td>
-            <td colspan="6">name1</td>
-            <td colspan="3">Score</td>
-         </tr>
-         <tr>
-            <td colspan="1">1</td>
-            <td colspan="6">name1</td>
-            <td colspan="3">Score</td>
-         </tr>
-         <tr>
-            <td colspan="10">...</td>
-         </tr>
-         <tr>
-            <td colspan="1">1</td>
-            <td colspan="6">name1</td>
-            <td colspan="3">Score</td>
-         </tr>
-
       </table>
    </div>
 
@@ -84,13 +66,16 @@ console.log("Hello Wolrd")
       </div>
    </div>
 
+
+   <script src="/socket.io/socket.io.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"></script>
    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>
-   <script src="../ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-   <script src="../javascripts/editor.js"></script>
+   <script src="../../ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+   <script src="../../javascripts/editor.js"></script>
+
 
 
 </body>

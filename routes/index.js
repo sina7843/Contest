@@ -31,7 +31,7 @@ router.get('/logine', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/users',
+  successRedirect: '/questions/1/',
   failureRedirect: '/logine',
 }), (req, res, next) => {
   res.json('done');

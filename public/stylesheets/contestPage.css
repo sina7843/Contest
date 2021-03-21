@@ -108,12 +108,19 @@ body,html{
    border-radius:5px;
    border:0;
 }
-
+.alert{
+   text-align:right;
+   direction:rtl;
+}
 .scoreboard{
    width: 100%;
    height:45%;
    border-collapse: collapse;
    background-color:rgba(255,255,255,0.2);
+}
+table tr>.mine{
+   background-color:rgba(255,255,255,0.1);
+   color : #39B958;
 }
 .scoreboard th{
    text-align: center;

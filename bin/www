@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
+var { app, socketapi } = require('../app');
 var debug = require('debug')('contest:server');
 var http = require('http');
 
@@ -12,7 +11,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
@@ -20,7 +19,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+socketapi.io.attach(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
