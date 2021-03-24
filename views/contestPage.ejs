@@ -18,17 +18,22 @@
 
    <div class="right">
       <pre class="editor" id="editor">
-console.log("Hello Wolrd")
+import java.util.Scanner;
+public class Main {
+      static Scanner sc = new Scanner(System.in);
+      public static void main(String[] args) {
+         //code here
+      }
+}   
       </pre>
       <div class="option">
          <button class="submit" id="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">submit</button>
          <ul class="pages">
-            <li class="page"><a class="pagelink" href="#">1</a></li>
+            <li class="page"><a class="pagelink">1</a></li>
             <li class="page"><a class="pagelink">2</a></li>
             <li class="page"><a class="pagelink">3</a></li>
          </ul>
-         <select name="languages" class="languages" id="languages" value="javascript">
-            <option value="javascript">java script</option>
+         <select name="languages" class="languages" id="languages" value="c_cpp">
             <option value="java">java</option>
             <option value="c_cpp">C & C++</option>
             <option value="python">python</option>
@@ -37,7 +42,7 @@ console.log("Hello Wolrd")
    </div>
    <div class="left">
       <div class="question">
-         <%= content %>
+         <%- content %>
       </div>
       <table class="scoreboard" id="scoreboard">
          <tr>

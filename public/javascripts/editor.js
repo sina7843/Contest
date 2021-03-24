@@ -1,7 +1,7 @@
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/tomorrow_night_eighties");
 editor.session.setUseWrapMode("free");
-editor.session.setMode("ace/mode/python");
+editor.session.setMode("ace/mode/c_cpp");
 editor.setShowPrintMargin(false);
 var socket = io('/');
 
@@ -11,12 +11,36 @@ socket.on('setBoard', () => {
 
 let pagelinks = document.getElementsByClassName('pagelink');
 for (i = 0; i < pagelinks.length; i++) {
-   pagelinks[i].href = "questions/" + pagelinks[i].textContent;
+   pagelinks[i].href = `http://${window.location.hostname}/questions/${pagelinks[i].textContent}`;
 }
 
 let languages = document.getElementById('languages');
 languages.addEventListener('change', () => {
    editor.session.setMode("ace/mode/" + languages.value);
+   let text = ""
+   switch (languages.value) {
+      case 'java':
+         text = "import java.util.Scanner;\n" +
+            "public class Main {\n" +
+            "    static Scanner sc = new Scanner(System.in);\n" +
+            "    public static void main(String[] args) {\n" +
+            "        //code here\n" +
+            "    }\n" +
+            "}\n"
+         break;
+      case 'c_cpp':
+         text = "#include <iostream>\n" +
+            "using namespace std;\n" +
+            "int main()\n" +
+            "{\n" +
+            "  //code Here\n" +
+            "}\n"
+         break;
+      case 'python':
+         text = "#Code here"
+         break;
+   }
+   editor.setValue(text);
 })
 
 let modalcontent = document.getElementById('modalcontent');

@@ -59,6 +59,7 @@ body,html{
 
 }
 .question{
+   font-family: "koodak";
    text-align: right;
    direction:rtl;
    width: 100%;
@@ -113,6 +114,7 @@ body,html{
    direction:rtl;
 }
 .scoreboard{
+   font-family: "koodak";
    width: 100%;
    height:45%;
    border-collapse: collapse;
