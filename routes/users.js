@@ -21,7 +21,6 @@ router.post('/addquestion', async (req, res, next) => {
 
 router.get('/scoreboard', async (req, res, next) => {
   let users = await User.find({ num: req.params.num }, "-password -_id -Email").sort({ 'Score': -1 }).exec();
-  console.log(users);
   res.send(users);
 });
 
@@ -33,7 +32,6 @@ router.get('/:num', async (req, res, next) => {
 router.post('/:num', async (req, res, next) => {
   let result = await answer.answer(req.params.num, req.body.Code, req.user, "javascript")
   req.body.success = result.Correct;
-  console.log(result);
   res.send(result);
 });
 
