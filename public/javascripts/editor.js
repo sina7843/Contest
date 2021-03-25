@@ -19,6 +19,19 @@ languages.addEventListener('change', () => {
    editor.session.setMode("ace/mode/" + languages.value);
    let text = ""
    switch (languages.value) {
+      case 'javascript':
+         text = "var readline = require('readline');\n" +
+            "var rl = readline.createInterface({\n" +
+            "    input: process.stdin,\n" +
+            "    output: process.stdout,\n" +
+            "    terminal: false\n" +
+            "});\n\n" +
+
+            "rl.on('line', function (line) {\n" +
+            "        //codehere\n" +
+            "    }\n" +
+            ")";
+         break;
       case 'java':
          text = "import java.util.Scanner;\n" +
             "public class Main {\n" +
@@ -51,7 +64,8 @@ submitbtn.addEventListener('click', () => {
    let code = editor.getValue();
    $.post(url, { Code: code, language: languages.value }, function (result) {
       let innerHTML;
-      if (result.wait) {
+      console.log(result);
+      if (result.iswait) {
          innerHTML = `<div class="alert alert-warning" role="alert">لطفا 5 ثانیه بعد امتحان کنید</div>`
       }
       else {

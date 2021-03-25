@@ -5,14 +5,10 @@ const socketapi = {
 };
 
 io.on('connection', (socket) => {
-   console.log('a user connected');
    socket.on('getScore', () => {
       socket.emit('setBoard');
-      socket.brodcast.emit('setBoard')
+      socket.broadcast.emit('setBoard')
    })
-   socket.on('disconnect', () => {
-      console.log('user disconnected');
-   });
 });
 
 

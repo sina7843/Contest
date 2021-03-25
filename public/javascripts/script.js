@@ -4,7 +4,7 @@
       hour = minute * 60,
       day = hour * 24;
 
-   let contestday = "Mar 25, 2021 13:00:00",
+   let contestday = "Mar 24, 2021 12:00:00",
       countDown = new Date(contestday).getTime(),
       x = setInterval(function () {
          let now = new Date().getTime(),
@@ -20,9 +20,8 @@
 
          //do something later when date is reached
          if (distance < 0) {
-            location.replace("http://programmingcomp.ir/login");
+            location.replace("/login");
             clearInterval(x);
          }
-         //seconds
       }, 0)
 }());

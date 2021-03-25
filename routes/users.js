@@ -30,22 +30,27 @@ router.get('/:num', async (req, res, next) => {
 });
 let javaInProcess = false;
 router.post('/:num', async (req, res, next) => {
-  let result;
+  let result = {};
+  result.iswait = true;
+
   if (req.body.language === "java") {
     if (javaInProcess) {
       result.iswait = true;
-      res.send(result);
     }
     else {
       javaInProcess = true;
+
       result = await answer.answer(req.params.num, req.body.Code, req.user, req.body.language);
       javaInProcess = false;
       res.send(result);
     }
   }
   else {
-    result.iswait = false;
+
+
     result = await answer.answer(req.params.num, req.body.Code, req.user, req.body.language)
+    result.iswait = false;
+    console.log(result)
     res.send(result);
   }
 });

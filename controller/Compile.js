@@ -7,6 +7,7 @@ compile.run = async (language, code, inputFolder, outputFolder) => {
     for (i in inputFiles) {
         let input = await fs.readFile("./" + inputFolder + "/" + inputFiles[i], { encoding: 'utf8' })
         let output = await fs.readFile("./" + outputFolder + "/" + outputFiles[i], { encoding: 'utf8' })
+
         let result;
         switch (language) {
             case 'c_cpp':
