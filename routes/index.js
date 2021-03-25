@@ -24,10 +24,10 @@ router.post('/', async (req, res, next) => {
   }
 })
 router.get('/login', (req, res, next) => {
-  res.render('login', { errmsg: '' });
+  res.render('Login', { errmsg: '' });
 });
 router.get('/logine', (req, res, next) => {
-  res.render('login', { errmsg: 'ایمیل یا گذرواژه درست نیست' });
+  res.render('Login', { errmsg: 'ایمیل یا گذرواژه درست نیست' });
 });
 
 router.post('/login', passport.authenticate('local', {

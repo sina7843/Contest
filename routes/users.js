@@ -28,11 +28,26 @@ router.get('/:num', async (req, res, next) => {
   let question = await questionModel.findOne({ num: req.params.num }, "-inputFolder -outputFolder");
   res.render('contestPage', { content: question.innerHTML, thisUser: req.user.Name });
 });
-
+let javaInProcess = false;
 router.post('/:num', async (req, res, next) => {
-  let result = await answer.answer(req.params.num, req.body.Code, req.user, "javascript")
-  req.body.success = result.Correct;
-  res.send(result);
+  let result;
+  if (req.body.language === "java") {
+    if (javaInProcess) {
+      result.iswait = true;
+      res.send(result);
+    }
+    else {
+      javaInProcess = true;
+      result = await answer.answer(req.params.num, req.body.Code, req.user, req.body.language);
+      javaInProcess = false;
+      res.send(result);
+    }
+  }
+  else {
+    result.iswait = false;
+    result = await answer.answer(req.params.num, req.body.Code, req.user, req.body.language)
+    res.send(result);
+  }
 });
 
 
